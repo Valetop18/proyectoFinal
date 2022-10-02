@@ -3,10 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Alert, TextI
 import Input from '../components/input'
 import { useDispatch, useSelector } from 'react-redux'
 import { signup, login } from '../store/actions/login.actions'
-import { fetchDistrito } from '../db'
 import { filteredDiputados } from '../store/actions/diputado.action'
 import { filteredSenadores } from '../store/actions/senador.action'
 import { COLORS } from '../constants/colors'
+import * as SQLite from 'expo-sqlite';
+
+const db = SQLite.openDatabase("distritoSelect.db");
+
 
 const INITIAL_STATE = {
     user:"",
@@ -176,11 +179,6 @@ const styles = StyleSheet.create({
         paddingVertical: '30%',
         paddingHorizontal: '5%',
         backgroundColor: COLORS.back,
-    },
-    image:{
-        flex: 1,
-        justifyContent: "flex-start",
-        
     },
     containerTitle:{
         alignItems:"center",

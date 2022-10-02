@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, ScrollView } from 'react-native'
-import { useDispatch } from 'react-redux';
 import ImageSelector from '../../components/fotos';
 
 const CamaraScreen = ({ navigation }) => {

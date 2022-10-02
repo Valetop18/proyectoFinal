@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/actions/login.actions';
 import { useNavigation } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
-import Login from '../../screens/login';
+import CamaraScreen from '../../screens/trash/camaraScreen';
 
 const BottomsTabs = createBottomTabNavigator()
 const Drawer = createDrawerNavigator();
@@ -28,17 +28,17 @@ function CustomDrawerContent(props) {
     );
   }
 
-const LogOutButton = ({navigation}) => {
+/*const LogOutButton = ({navigation}) => {
 
     const dispatch = useDispatch();
-    /*const navigation = useNavigation(); 
+    const navigation = useNavigation(); 
 
     function navigate() {
         if (navigationRef.isReady()) {
           navigationRef.navigate();
         }
       }
-*/
+
     const navigateHome = () => {navigation.navigate()}
 
     const onLogOutHandler = () => {
@@ -52,12 +52,12 @@ const LogOutButton = ({navigation}) => {
         <DrawerItem label="Cerrar sesión" onPress={onLogOutHandler} />
       </DrawerContentScrollView>
     );
-}
+}*/
 
 const MyDrawer = () => {
     return (
         <Drawer.Navigator useLegacyImplementation
-        drawerContent={() => <LogOutButton />}>
+        drawerContent={(props) => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name='Home'>
               {() => (
               <BottomsTabs.Navigator screenOptions={{
@@ -101,6 +101,18 @@ const MyDrawer = () => {
                         <View style={styles.item}>
                             <MaterialCommunityIcons name="chart-donut-variant" size={30} color={focused ? 'red' : 'grey'} />
                             <Text>Camaras</Text>
+                        </View>
+                    )
+                }}
+            />
+            <BottomsTabs.Screen
+                name='Camara'
+                component={CamaraScreen}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={styles.item}>
+                            <MaterialCommunityIcons name="chart-donut-variant" size={30} color={focused ? 'red' : 'grey'} />
+                            <Text>Camara</Text>
                         </View>
                     )
                 }}
