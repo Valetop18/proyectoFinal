@@ -1,23 +1,31 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native'
-import NaveLogin from './NaveLogin';
+import { NavigationContainer } from '@react-navigation/native'
 import { useSelector } from 'react-redux';
-import MyDrawer from './drawer';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-    export const navigationRef = createNavigationContainerRef()
+const Stack = createNativeStackNavigator()
+
+import Login from "../screens/login";
+import MyDrawer from './drawer';
 
     const MainNavigation = () => {
 
-    
-    const filteredDiputados = useSelector(state => state.selectDiputado.filteredDiputados);
+    const userID = useSelector(state => state.auth.token);
     
     return (
-        <NavigationContainer ref={navigationRef}>
-            {filteredDiputados != 0 ?  
-            <MyDrawer /> 
-            :
-            <NaveLogin />
+        <NavigationContainer>
+            {userID === null ? (
+                <Stack.Navigator screenOptions={{
+                    headerShown: false,
+                }
+                }>
+                        <Stack.Screen name='Login' component={Login} options={{title: 'Login'}} />
+                </Stack.Navigator>) 
+                : 
+                (
+                    <MyDrawer />
+                )
             }
         </NavigationContainer>
     )

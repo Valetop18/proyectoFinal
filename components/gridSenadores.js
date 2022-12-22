@@ -7,33 +7,33 @@ import { useState, useEffect } from "react";
 import { ref, set, update, onValue, remove } from "firebase/database";
 import { db } from "../constants/config";
 
-const GridRepresent = ({item, onSelected}) => {
+const GridSenadores = ({item, onSelected}) => {
 
-    const [asistencia, setAsistencia] = useState();
-    const [votacion, setVotacion] = useState();
-    const [proyectos, setProyectos] = useState();
+    const [asistenSena, setAsistenSena] = useState();
+    const [votaSena, setVotaSena] = useState();
+    const [proyectoSena, setProyectoSena] = useState();
 
         useEffect(() => {
-        const starCountRef = ref(db, 'diputados/asistencia/' + item.id);
-        onValue(starCountRef, (snapshot) => {
-                console.log(snapshot.val(item.id))
-                setAsistencia(snapshot.val(item.id))
+        const starCount = ref(db, 'senadores/asistencia/' + item.id);
+        onValue(starCount, (snapshut) => {
+                console.log(snapshut.val(item.id))
+                setAsistenSena(snapshut.val(item.id))
             })
         }, [item.id])
 
         useEffect(() => {
-            const starCountRef = ref(db, 'diputados/votaciones/' + item.id);
-            onValue(starCountRef, (snapshot) => {
-                    console.log(snapshot.val(item.id))
-                    setVotacion(snapshot.val(item.id))
+            const starCount = ref(db, 'senadores/votaciones/' + item.id);
+            onValue(starCount, (snapshut) => {
+                    console.log(snapshut.val(item.id))
+                    setVotaSena(snapshut.val(item.id))
                 })
         }, [item.id])
 
         useEffect(() => {
-            const starCountRef = ref(db, 'diputados/proyectos/' + item.id);
-            onValue(starCountRef, (snapshot) => {
-                    console.log(snapshot.val(item.id))
-                    setProyectos(snapshot.val(item.id))
+            const starCount = ref(db, 'senadores/proyectos/' + item.id);
+            onValue(starCount, (snapshut) => {
+                    console.log(snapshut.val(item.id))
+                    setProyectoSena(snapshut.val(item.id))
                 })
         }, [item.id])
     
@@ -57,9 +57,9 @@ const GridRepresent = ({item, onSelected}) => {
                             <FontAwesome name="check-circle-o" size={20} color="black" />
                         </View>
                         <View style={styles.info}>
-                            <Text style={styles.informacion}>Asistencia {asistencia}%</Text>
-                            <Text style={styles.informacion}>Votación {votacion}%</Text>
-                            <Text style={styles.informacion}>Presentación de Proyectos {proyectos}</Text>
+                            <Text style={styles.informacion}>Asistencia {asistenSena}%</Text>
+                            <Text style={styles.informacion}>Votación {votaSena}%</Text>
+                            <Text style={styles.informacion}>Presentación de Proyectos {proyectoSena}</Text>
                         </View>
                     </View>
                 </View>
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default GridRepresent
+export default GridSenadores

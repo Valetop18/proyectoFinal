@@ -1,7 +1,8 @@
 import React from "react";
 import GridRepresent from "../components/gridRepresents";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
+import { COLORS } from "../constants/colors";
 
 export const Diputados = ({navigation}) => {
 
@@ -18,14 +19,27 @@ export const Diputados = ({navigation}) => {
         )
     
         return (
-            <FlatList
-            data={diputados}
-            renderItem={renderGridItem}
-            numColumns={1}
-            keyExtractor={item => item.id}
-            />
+            <><View style={styles.back}></View>
+                <FlatList 
+                style={styles.container}
+                data={diputados}
+                renderItem={renderGridItem}
+                numColumns={1}
+                keyExtractor={item => item.id}
+                />
+            </>
         )
 }
 
-
+const styles = StyleSheet.create({
+    back: {
+        backgroundColor: COLORS.claro,
+        width: '100%',
+        height: '100%',
+        position: 'absolute'
+    },
+    container: {
+        marginTop: 5,
+    }
+})
 

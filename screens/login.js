@@ -10,7 +10,6 @@ import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabase("distritoSelect.db");
 
-
 const INITIAL_STATE = {
     user:"",
     pass:""
@@ -36,6 +35,7 @@ const Login = () => {
                 var region = results.rows.item(0).region;
                 setDistritoSelect(distrito)
                 setRegionSelect(region)
+                console.log(regionSelect, distritoSelect)
             }
           }
         );
@@ -154,7 +154,6 @@ const Login = () => {
                         style={styles.buttonAuth} 
                         activeOpacity={0.8}
                         onPress={onLogInHandler}
-                        
                         >
                         <Text style={styles.buttonText}>Iniciar sesión</Text>
                     </TouchableOpacity>

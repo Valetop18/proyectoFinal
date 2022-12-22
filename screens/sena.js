@@ -1,7 +1,8 @@
 import React from "react";
-import GridRepresent from "../components/gridRepresents";
+import GridSenadores from "../components/gridSenadores";
 import { useSelector } from "react-redux";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet, SafeAreaView, StatusBar, View} from "react-native";
+import { COLORS } from "../constants/colors";
 
 export const Senadores = ({navigation}) => {
 
@@ -14,15 +15,29 @@ export const Senadores = ({navigation}) => {
     }
 
         const renderGridItem = ({item}) => (
-            <GridRepresent item={item} onSelected={handleSelected}/>
+            <GridSenadores item={item} onSelected={handleSelected}/>
         )
     
         return (
-            <FlatList
-            data={senadores}
-            renderItem={renderGridItem}
-            numColumns={1}
-            keyExtractor={item => item.id}
-            />
+            <><View style={styles.back}></View>
+                <FlatList
+                    style={styles.container}
+                    data={senadores}
+                    renderItem={renderGridItem}
+                    numColumns={1}
+                    keyExtractor={item => item.id} />
+            </>
         )
 }
+
+const styles = StyleSheet.create({
+    back: {
+        backgroundColor: COLORS.claro,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+    },
+    container: {
+        marginTop: 5,//StatusBar.currentHeight || 0,
+    },
+})
