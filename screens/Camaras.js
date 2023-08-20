@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { COLORS } from "../constants/colors";
 import { Desk } from "../components/desk";
 
-export const Camaras = () => {
+export const CamaraDipu = () => {
+
     return(
         <View style={styles.container}>
-            <Text>Camaras</Text>
+            <View style={styles.boton}>
+                <Text>Cámara de Diputados</Text>
+            </View>
             <View style={styles.cams}>
                 <View style={styles.fila1}>
                     <Desk style={styles.deskPDG} />
@@ -237,6 +240,9 @@ export const Camaras = () => {
 }
 
 const styles = StyleSheet.create({
+    boton: {
+        flexDirection: 'row',
+    },
     cams: {
         margin: 8,
         marginTop: 160,

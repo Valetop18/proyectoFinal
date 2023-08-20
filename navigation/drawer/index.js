@@ -13,9 +13,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 import SelectDistrito from "../../screens/selectDistrito";
-import { Camaras } from "../../screens/Camaras";
 import { Presentacion } from "../../screens/presentacion";
 
+import NaveCamaras from '../NaveCamaras';
 import NaveDiputados from "../NaveDiputados";
 import NaveSenadores from "../NaveSenadores";
 
@@ -155,7 +155,7 @@ const MyDrawer = () => {
                 />
                 <BottomsTabs.Screen
                     name='CamaraTab'
-                    component={Camaras}
+                    component={NaveCamaras}
                     options={{
                         tabBarIcon: ({ focused }) => (
                             <View style={styles.item}>
